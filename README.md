@@ -1,2 +1,2 @@
 # technischeOpdracht
-Technische opdracht
+Technische opdracht | Wheelhouse
