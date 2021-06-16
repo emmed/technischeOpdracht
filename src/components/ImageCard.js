@@ -4,6 +4,8 @@ const ImageCard = ({image}) => {
 
     console.log("imageCARD",image )
     console.log("sdfsddf",image.url )
+    console.log("sdfsddf",image.url )
+    console.log("sdfsddf",image.url )
 
     
      return (
