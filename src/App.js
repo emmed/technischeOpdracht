@@ -1,17 +1,18 @@
+// eslint-disable-next-line
 import React, { useState, useEffect} from 'react' 
 import ImageCard from './components/ImageCard'
 import {IconContext} from 'react-icons'
 import NavigationBar from './components/NavigationBar';
-
+import {FormControl, InputGroup, Row ,Container} from "react-bootstrap"
 
 function App() {
   
   const API_URL = 'https://picsum.photos/v2/list'
-
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState()
-  const [visible, setVisible] = useState(6)
+  const [visible, setVisible] = useState()
+  const [search, setSearch] = useState('')
  
 
 useEffect(() => {
@@ -21,9 +22,7 @@ useEffect(() => {
   .then(data => {
     setImages(data)
     setIsLoading(false)
-    console.log("Author: " + data[1].author, "+ id: " +  data[1].id)
-    // console.log("binnen img",images[1].author)
-  })
+    })
   .catch(error => {
     setError(error)
     setVisible(false)
@@ -32,22 +31,37 @@ useEffect(() => {
 }, [])
 
  
-if(isLoading) return <p>Data is loading...</p>
+if(isLoading) return <h2 className="justify-content-md-center">Photos Loading...</h2>
 
 if (error) return <h2>Error..</h2>
+
+const filterAuthor = images.filter( image => {
+ return image.author.toLowerCase().includes( search.toLowerCase() )
+})
 
   return (
     <IconContext.Provider value={{ color: "#5d80f2", size: "2em"}}>
       <NavigationBar/>
-    <div className="container mx-auto">
+      <Container>
+        <Row className="justify-content-md-center my-5">
+        <InputGroup className="mb-3">
+     <FormControl
+      onChange={ e => setSearch(e.target.value)}
+      placeholder="Search author"
+      aria-label="search author"
+     />
+  </InputGroup>
+     
+      {/* <input placeholder="Search" variant="outline-primary" onChange={ e => setSearch(e.target.value)}/> */}
+  
+    </Row>
+    </Container>
+  
+     <div className="container mx-auto">
       <div className="grid grid-cols-3 gap-4">
-       
-         {images.slice(0,visible).map(image => (
-            //  <div key={index}>
-            //  <div>{image.id}</div>
-            //  <div>{image.author}</div>
-            //  <img src={image.download_url} alt="img" />
-            //  </div>
+
+         {filterAuthor.slice(0,visible).map(image => (
+        
             <ImageCard key={image.id} image={image}/>
        
          ))}

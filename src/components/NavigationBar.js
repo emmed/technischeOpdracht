@@ -1,7 +1,8 @@
-import React from 'react'
-import {Navbar, Nav, NavDropdown, Form, Button, FormControl} from "react-bootstrap"
+import React, {useState} from 'react'
+import {Navbar, Nav} from "react-bootstrap"
 
-const NavigationBar = () => {
+const NavigationBar = ({searchKeyword}) => {
+ 
     return (
         <div>
             <Navbar className="mb-6" bg="primary" expand="lg" variant="dark">
@@ -13,21 +14,10 @@ const NavigationBar = () => {
       style={{ 
         maxHeight: '100px'
      }}
-      navbarScroll
-    >
-      <Nav.Link href="#action1">Home</Nav.Link>
-      
+      navbarScroll>
+      <Nav.Link href="#action1">Saved</Nav.Link>
       
     </Nav>
-    <Form className="d-flex">
-      <FormControl
-        type="search"
-        placeholder="Search"
-        className="mr-2"
-        aria-label="Search"
-      />
-      <Button variant="outline-light">Search</Button>
-    </Form>
   </Navbar.Collapse>
 </Navbar>
         </div>
