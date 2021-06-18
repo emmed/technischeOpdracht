@@ -1,12 +1,12 @@
 import React from 'react'
 // import React { useState} from 'react' 
 
-const Saved = (props) => {
+const Saved = () => {
  
 
     return (
    <div>
-       <button onClick={props.doWhatever}>{props.title}</button>
+       <h1>Favorieten</h1>
    </div>
     )
 }
