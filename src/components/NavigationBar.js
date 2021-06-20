@@ -1,15 +1,17 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 // import DarkModeToggle from "react-dark-mode-toggle";
-import {Route, BrowserRouter as Router, Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function NavigationBar() {
   return (
     <div>
       <Navbar className="mb-6" bg="primary" expand="lg" variant="dark">
         <Navbar.Brand>
-        <Link to="/" style={{color: "white", textDecoration: 'none'}}>
-          PhotoLibrary</Link></Navbar.Brand>
+          <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+            PhotoLibrary
+          </Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -19,9 +21,12 @@ function NavigationBar() {
             }}
             navbarScroll
           >
-            <Nav.Link >
-              <Link to="/favorieten"  style={{color: "white", textDecoration: 'none'}}>Favorieten</Link></Nav.Link>
-            {/* <Button variant="info" onClick={() => props.themeToggle()}>click me!</Button> */}
+            <Link
+              to="/favorieten"
+              style={{ color: "white", textDecoration: "none" }}
+            >
+              Favorieten
+            </Link>
 
             {/* <DarkModeToggle
                      onClick={() => themeToggle()}
