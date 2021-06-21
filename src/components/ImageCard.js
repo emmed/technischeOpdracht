@@ -9,15 +9,28 @@ const ImageCard = ({ image }) => {
   const [overCloud, setOverCloud] = useState(false);
 
   const saveFavorieten = () => {
-    const favArr = [];
+    var favArr = []
+    const fav_data = localStorage.getItem('myFavorieten')
+    favArr = JSON.parse(fav_data);
+    const new_favArr = []
+    if(favArr == null){
+      new_favArr.push(image);
+      localStorage.setItem('myFavorieten', JSON.stringify(new_favArr));
+      console.log("[imageCard]favArr: ", favArr)
 
-    favArr.push(localStorage.setItem("myObject", JSON.stringify(image)));
-    console.log(favArr);
+    } else {
+ 
+      favArr.push(image);
+      localStorage.setItem('myFavorieten', JSON.stringify(favArr));
+      console.log("[imageCard]favArr Else: ", favArr)
+
+    }
+ 
   };
 
   return (
     <CardDeck>
-      <Card className="card rounded overflow-hidden shadow-lg">
+      <Card style={{ width: '22rem' }} className="card rounded overflow-hidden shadow-lg">
         <Card.Img
           variant="top"
           src={image.download_url}

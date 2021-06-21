@@ -1,23 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Card, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Favorieten = () => {
-  const [image, setA] = useState();
 
-  useEffect(() => {
-    if (localStorage.getItem("myObject") != null) {
-      const favArr = [];
-      favArr.push(setA(JSON.parse(localStorage.getItem("myObject"))));
-      console.log(favArr, "favorieten");
+  const [image, setFav] = useState([]);
+  const favArr = [];
+  const fav_data = localStorage.getItem("myFavorieten")
+
+  
+
+    if (fav_data != null) {
+      console.log("[Favorieten]",JSON.parse(fav_data))
+
+    //   favArr.push(JSON.parse(localStorage.getItem("myFavorieten")));
+      favArr.push(JSON.parse(fav_data));
+      console.log("favArr[favorieten]",favArr);
     }
-  }, []);
+  
+
+    
 
   return (
     <div>
-      <h1>Favorieten</h1>
-      {image ? (
-        <Card className="card rounded overflow-hidden shadow-lg">
+                  <Container>
+      <h1 className="text-center" style={{ color: "#007bff" }}>Favorieten</h1>
+      <Row className="justify-content-md-center my-5">
+
+      {Object.keys(setFav).map(function(key,index) {
+            return (<div key={key}>{image}this is a test</div>)
+            })}
+
+
+     {image ? (
+        <Card style={{ width: '22rem' }} className="card rounded overflow-hidden shadow-lg">
           <Card.Img
             variant="top"
             src={image.download_url}
@@ -29,27 +45,6 @@ const Favorieten = () => {
               <Link to={`/id/${image.id}/info`}>{image.author}</Link>
             </Card.Title>
 
-            <Container>
-              <Row>
-                <div className="col">
-                  {/* <MdCloudDownload 
-                onClick={() => (window.location.href = `${image.download_url}`)}
-                className=" inline-block download-btn"
-                style={overCloud ? { color: "#007bff" } : {}}
-                onMouseOver={() => setOverCloud(true)}
-                onMouseLeave={() => setOverCloud(false)}
-              /> */}
-                </div>
-                <div className="col">
-                  {/* <IoIosHeart
-              onClick={saveFavorieten}
-               style={overHeart ? { color: "red" } : {}}
-               onMouseOver={() => setOverHeart(true)}
-               onMouseLeave={() => setOverHeart(false)}
-              /> */}
-                </div>
-              </Row>
-            </Container>
           </Card.Body>
           <Card.Footer>
             <small className="text-muted">
@@ -60,6 +55,8 @@ const Favorieten = () => {
       ) : (
         <h1>Nog geen favorieten opgeslagen!</h1>
       )}
+      </Row>
+      </Container>
     </div>
   );
 };
